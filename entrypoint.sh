@@ -4,17 +4,18 @@ set -e
 INSTALL_DIR=/opt/nightingale-server
 MARKER=$INSTALL_DIR/.installed
 
-# 1. Instalar solo si no existe el marcador
+# 1. Instalar solo la primera vez con el AppID de servidor dedicado
 if [ ! -f "$MARKER" ]; then
-  echo "Instalando Nightingale Dedicated Server AppID 3796810..."
+  echo "Instalando Nightingale Dedicated Server (AppID 1928981)..."
   steamcmd +force_install_dir "$INSTALL_DIR" \
            +login anonymous \
-           +app_update 3796810 validate \
+           +app_update 1928981 validate \
            +quit
 
-  # Verificar que el binario exista
-  if [ ! -f "$INSTALL_DIR/NightingaleServer" ]; then
-    echo "ERROR: No se encontró NightingaleServer en $INSTALL_DIR"
+  # Verificar que exista el binario de servidor
+  if [ ! -f "$INSTALL_DIR/LinuxNoEditor/NightServer" ]; then
+    echo "ERROR: No se encontró el ejecutable en $INSTALL_DIR/LinuxNoEditor/NightServer"
+    ls -R "$INSTALL_DIR"
     exit 1
   fi
 
@@ -24,10 +25,10 @@ else
 fi
 
 # 2. Copiar configuración
-cp /opt/config/server.cfg "$INSTALL_DIR/server.cfg"
+cp /opt/config/server.cfg "$INSTALL_DIR/config/server.cfg"
 
-# 3. Iniciar servidor
-exec "$INSTALL_DIR/NightingaleServer" \
+# 3. Iniciar servidor (ruta del binario)
+exec "$INSTALL_DIR/LinuxNoEditor/NightServer" \
      -ServerName="${SERVER_NAME}" \
      -MaxPlayers=${MAX_PLAYERS} \
      -Port=${GAME_PORT} \

@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  nightingale:
+    build: .
+    container_name: nightingale-server
+    ports:
+      - "7777:7777/udp"
+      - "27015:27015/udp"
+    environment:
+      SERVER_NAME: "NSC-Server"
+      MAX_PLAYERS: "6"
+      AUTO_UPDATE: "1"
+      SERVER_PASSWORD: "TuPasswordSecreto"
+    volumes:
+      - "./data:/opt/nightingale"
+    restart: unless-stopped

@@ -2,7 +2,7 @@
 FROM steamcmd/steamcmd:latest
 
 # 2. Variables de entorno por defecto
-ENV SERVER_NAME="Mi Servidor Nightingale" \
+ENV SERVER_NAME="NSC SERVER" \
     MAX_PLAYERS=6 \
     SERVER_PASSWORD="" \
     WORLD_NAME="NSC" \

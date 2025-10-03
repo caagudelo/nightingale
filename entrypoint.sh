@@ -4,7 +4,7 @@ set -e
 # 1. Descargar/actualizar Nightingale Dedicated Server
 steamcmd +force_install_dir /opt/nightingale-server \
          +login anonymous \
-         +app_update 1928980 validate \
+         +app_update 3796810 validate \
          +quit
 
 # 2. Copiar configuración

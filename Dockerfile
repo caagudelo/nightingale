@@ -1,7 +1,6 @@
-# 1. Imagen base con SteamCMD
 FROM steamcmd/steamcmd:latest
 
-# 2. Variables de entorno por defecto
+# Build args y ENV
 ARG SERVER_NAME="NSC SERVER"
 ARG MAX_PLAYERS=6
 ARG SERVER_PASSWORD="SinEconomia"
@@ -26,20 +25,19 @@ ENV SERVER_NAME=${SERVER_NAME} \
     RCON_PORT=${RCON_PORT} \
     TZ=${TZ}
 
-# 3. Crear directorios
+# Crear carpetas
 RUN mkdir -p /opt/nightingale-server /opt/config /opt/logs /opt/scripts
 WORKDIR /opt/nightingale-server
 
-# 4. Copiar configuración y script de arranque
+# Copiar config y script
 COPY config/server.cfg /opt/config/server.cfg
 COPY entrypoint.sh /opt/scripts/entrypoint.sh
 RUN chmod +x /opt/scripts/entrypoint.sh
 
-# 5. Definir zona horaria
+# Zona horaria
 RUN ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} > /etc/timezone
 
-# 6. Exponer puertos del juego
+# Exponer puertos
 EXPOSE ${GAME_PORT}/udp ${QUERY_PORT}/udp ${RCON_PORT}/tcp
 
-# 7. Entry point
 ENTRYPOINT ["/opt/scripts/entrypoint.sh"]

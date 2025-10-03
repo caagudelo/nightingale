@@ -9,4 +9,4 @@ RUN mkdir -p /opt/nightingale \
 WORKDIR /opt/nightingale
 EXPOSE 7777/udp 27015/udp
 
-CMD ["bash","-lc","./NWXServer.sh -batchmode -nographics"]
+CMD ["bash","-lc","./NWXServer.sh -batchmode -nographics -password ${SERVER_PASSWORD}"]

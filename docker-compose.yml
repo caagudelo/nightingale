@@ -7,8 +7,8 @@ services:
       - "7777:7777/udp"
       - "27015:27015/udp"
     environment:
-      SERVER_NAME: "NSC-Server"
-      MAX_PLAYERS: "6"
+      SERVER_NAME: "MiRealmPrivado"
+      MAX_PLAYERS: "16"
       AUTO_UPDATE: "1"
       SERVER_PASSWORD: "TuPasswordSecreto"
     volumes:

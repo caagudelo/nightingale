@@ -9,7 +9,7 @@ if [ ! -f "$MARKER" ]; then
   echo "Instalando Nightingale Dedicated Server..."
   steamcmd +force_install_dir "$INSTALL_DIR" \
            +login anonymous \
-           +app_update 1928980 validate \
+           +app_update 3796810 validate \
            +quit
 
   # Crear archivo marcador para futuros inicios
